@@ -172,10 +172,17 @@ public class ModifyManager {
         }
 
         // 第3步，修改build.gradle
-        boolean isBuildGradleModified = GradleUtil.createArchetypeBuildGradle(appModel.getApplicationId(), appModel.getAppName() + "RunAlone", localProjectPath + File.separator + appModel.getAppName() + File.separator + "build.gradle");
+        String variable = appModel.getAppName() + "RunAlone"; //组件化配置变量
+        boolean isBuildGradleModified = GradleUtil.createArchetypeBuildGradle(appModel.getApplicationId(), variable, localProjectPath + File.separator + appModel.getAppName() + File.separator + "build.gradle");
         if (!isBuildGradleModified) {
             MessageUtil.showMessage("失败", "创建buide.gradle失败", Messages.getErrorIcon());
             result = Result.errorResult("创建buide.gradle失败");
+            return result;
+        }
+        // 在gradle.properties中添加组件化控制变量
+        boolean isAddVariableToFile = FileUtil.writeFile(variable + " = true", localProjectPath + File.separator + "gradle.properties", true);
+        if(!isAddVariableToFile){
+            result = Result.errorResult("添加组件化变量进gradle.properties失败！");
             return result;
         }
         // 第4步，添加libmanifest和下面的manifest.xml
@@ -208,9 +215,9 @@ public class ModifyManager {
 
     /**
      * 修改工程配置
-     *  // 第1步，修改包名
-     *  // 第2步，修改appName和about信息
-     *  // 第3步，修改配置文件config.gradle
+     * // 第1步，修改包名
+     * // 第2步，修改appName和about信息
+     * // 第3步，修改配置文件config.gradle
      */
     public static Result modifyApplicationInfo(String localProjectPath, AppModel appModel, AboutModel aboutModel) {
 

@@ -169,6 +169,12 @@ public class FileUtil {
         return false;
     }
 
+    /**
+     * 追加进文件 不会另起一行
+     * @param append
+     * @param path
+     * @return
+     */
     public static boolean appendFile(String append,String path){
         try {
             List<String> lines = FileUtils.readLines(new File(path), "UTF-8");

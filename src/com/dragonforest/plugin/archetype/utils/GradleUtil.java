@@ -150,7 +150,7 @@ public class GradleUtil {
 
     //========================================================
 
-    static String tempelateBuildGradleStr = "if(rootProject.ext.moduleSetting.%s.toBoolean()){\n" +
+    static String tempelateBuildGradleStr = "if(%s.toBoolean()){\n" +
             "    apply plugin: 'com.android.application'\n" +
             "}else{\n" +
             "    apply plugin: 'com.android.library'\n" +
@@ -160,7 +160,7 @@ public class GradleUtil {
             "    compileSdkVersion  rootProject.ext.android.compileSdkVersion.toInteger()\n" +
             "\n" +
             "    defaultConfig {\n" +
-            "        if(rootProject.ext.moduleSetting.%s.toBoolean()){\n" +
+            "        if(%s.toBoolean()){\n" +
             "            applicationId \"%s\"\n" +
             "        }\n" +
             "        minSdkVersion rootProject.ext.android.minSdkVersion.toInteger()\n" +
@@ -181,7 +181,7 @@ public class GradleUtil {
             "    // Manifest配置\n" +
             "    sourceSets {\n" +
             "        main {\n" +
-            "            if (rootProject.ext.moduleSetting.%s.toBoolean()) {\n" +
+            "            if (%s.toBoolean()) {\n" +
             "                manifest.srcFile 'src/main/AndroidManifest.xml'\n" +
             "            } else {\n" +
             "                manifest.srcFile 'src/main/libmanifest/AndroidManifest.xml'\n" +
@@ -253,9 +253,6 @@ public class GradleUtil {
             "            apkDownloadDir: '\"/mnt/sdcard/DYYP/ISERVERAS/PREINST/\"'\n" +
             "    ]\n" +
             "\n" +
-            "    // 组件化设置\n" +
-            "    moduleSetting = [\n" +
-            "    ]\n" +
             "    //个性化\n" +
             "    personalInfo = [\n" +
             "\n" +
