@@ -26,6 +26,7 @@ public class GitUtil {
                     .setDirectory(new File(localPath))
                     .call();
             isGitSuccess=true;
+            git.close();
             return true;
         } catch (GitAPIException e) {
             e.printStackTrace();
@@ -50,6 +51,8 @@ public class GitUtil {
             @Override
             public void onSuccess() {
                if(isGitSuccess){
+                   // 克隆完成 删除.git
+                   FileUtil.deleteDir(localPath+File.separator+".git");
                    if(onCloneListener!=null){
                        onCloneListener.onCloneSuccess();
                    }

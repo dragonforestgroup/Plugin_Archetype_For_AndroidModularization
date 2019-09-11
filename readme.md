@@ -11,7 +11,7 @@
 
 ### 2.创建模块
 *  1.自动创建模块
-*  2.自动配置build.gradle文件
-*  3.自动添加settings.gradle文件
-*  4.自动创建libmanifest
-*  当创建模块之后，只需要在config.gradle中的moduleSetting中加入  【module名】RunAlone 布尔变量进行控制即可。 
+*  2.自动配置build.gradle文件，包含默认sdk版本和组件化配置
+*  3.自动将模块信息添加到settings.gradle文件
+*  4.自动创建组件化清单libmanifest
+*  5.自动添加组件化配置变量（添加在gradle.properties中）

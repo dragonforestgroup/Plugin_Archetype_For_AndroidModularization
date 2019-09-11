@@ -181,7 +181,7 @@ public class ModifyManager {
         }
         // 在gradle.properties中添加组件化控制变量
         boolean isAddVariableToFile = FileUtil.writeFile(variable + " = true", localProjectPath + File.separator + "gradle.properties", true);
-        if(!isAddVariableToFile){
+        if (!isAddVariableToFile) {
             result = Result.errorResult("添加组件化变量进gradle.properties失败！");
             return result;
         }
@@ -374,7 +374,6 @@ public class ModifyManager {
             result = Result.errorResult("gradle配置修改出错！请检查项目根目录下config.gradle是否存在！!");
             return result;
         }
-
         result = result.successResult("项目信息修改配置成功！");
         return result;
     }
